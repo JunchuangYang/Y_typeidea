@@ -18,7 +18,7 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from blog.views import post_list, post_detail
-from config.view import links
+from config.views import links
 from .custom_site import custom_site
 
 '''
