@@ -25,6 +25,8 @@ from .custom_site import custom_site
 P142
 url的定义理解为一个路径（正则字符串）对一个函数的映射
 url(<正则字符串>,<view function>, <固定参数contentxt>, <url的名称>)
+
+?P<value>:就是命名一个名字为value的组，匹配规则符合后面的/d+
 '''
 
 urlpatterns = [
