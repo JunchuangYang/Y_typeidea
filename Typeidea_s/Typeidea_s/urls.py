@@ -1,3 +1,4 @@
+#coding=utf-8
 """Typeidea_s URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -15,9 +16,24 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+
+from blog.views import post_list, post_detail
+from config.view import links
 from .custom_site import custom_site
 
+'''
+P142
+url的定义理解为一个路径（正则字符串）对一个函数的映射
+url(<正则字符串>,<view function>, <固定参数contentxt>, <url的名称>)
+'''
+
 urlpatterns = [
+    url(r'^$', post_list),
+    url(r'^category/(?P<category_id>\d+)/$', post_list),
+    url(r'^tag/(?P<tag_id>\d+)/$', post_list),
+    url(r'^post/(?P<post_id>\d+).html$', post_detail),
+    url(r'^links/$', links),
+
     url(r'^super_admin/', admin.site.urls),
     url(r'^admin/', custom_site.urls)
 ]
