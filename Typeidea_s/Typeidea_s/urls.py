@@ -16,8 +16,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from blog.views import IndexView,CategoryView,TagView,PostDetailView
 
-from blog.views import post_list, post_detail
+
 from config.views import links
 from .custom_site import custom_site
 
@@ -27,15 +28,42 @@ url的定义理解为一个路径（正则字符串）对一个函数的映射
 url(<正则字符串>,<view function>, <固定参数contentxt>, <url的名称>)
 
 ?P<value>:就是命名一个名字为value的组，匹配规则符合后面的/d+
-'''
+
+
+funtionView URL的写法
 
 urlpatterns = [
     url(r'^$', post_list),
-    url(r'^category/(?P<category_id>\d+)/$', post_list),
-    url(r'^tag/(?P<tag_id>\d+)/$', post_list),
-    url(r'^post/(?P<post_id>\d+).html$', post_detail),
-    url(r'^links/$', links),
+    url(r'^category/(?P<category_id>\d+)/$', post_list, name= 'category-list'),
+    url(r'^tag/(?P<tag_id>\d+)/$', post_list, name= 'tag-list'),
+    url(r'^post/(?P<post_id>\d+).html$', post_detail, name= 'post-detail'),
+    url(r'^links/$', links, name= 'links'),
 
-    url(r'^super_admin/', admin.site.urls),
-    url(r'^admin/', custom_site.urls)
+    url(r'^super_admin/', admin.site.urls, name= 'super-admin'),
+    url(r'^admin/', custom_site.urls, name= 'admin')
 ]
+'''
+
+# class-based view URL写法
+urlpatterns = [
+    url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^category/(?P<category_id>\d+)/$', CategoryView.as_view(), name= 'category-list'),
+    url(r'^tag/(?P<tag_id>\d+)/$', TagView.as_view() , name= 'tag-list'),
+    url(r'^post/(?P<post_id>\d+).html$', PostDetailView.as_view(), name= 'post-detail'),
+    url(r'^links/$', links, name= 'links'),
+
+    url(r'^super_admin/', admin.site.urls, name= 'super-admin'),
+    url(r'^admin/', custom_site.urls, name= 'admin')
+]
+
+
+
+
+
+
+
+
+
+
+
+
