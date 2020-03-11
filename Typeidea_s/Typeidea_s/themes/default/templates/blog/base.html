@@ -12,13 +12,15 @@
         margin-bottom: 5px;
     }
     </style>
+    {% block extra_head %}
+    {% endblock %}
 </head>
 
 
 <body>
 	<div class="container head">
         <nav class="navbar  fixed-top navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">首页</a>
+          <a class="navbar-brand" href="{% url 'index' %}">首页</a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 {% for cate in navs %}
@@ -27,8 +29,9 @@
                     </li>
                 {% endfor %}
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline" action="/search/" method="get">
+              <input class="form-control" type="search" name="keyword" placeholder="Search"
+                     value="{{ keyword }}" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">搜索</button>
             </form>
           </div>
@@ -45,14 +48,18 @@
                 {% endblock %}
             </div>
             <div class="col-xl-3">
-                <div class="card sidebar">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ sidebar.title }}</h4>
-                        <p>
-                            {{ sidebar.content_html }}
-                        </p>
-                    </div>
-                </div>
+                {% block sidebar %}
+                    {% for sidebar in sidebars %}
+                        <div class="card sidebar">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ sidebar.title }}</h4>
+                                <p>
+                                    {{ sidebar.content_html }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endblock %}
             </div>
         </div>
     </div>
