@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Django settings for Typeidea_s project.
 
@@ -45,8 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+'''
+Django的Middleware在项目启动时会被初始化，等待接受请求之后，会根据settings中的MIDDLEWARE
+的配置顺序挨个调用，传递request作为参数
+'''
 
 MIDDLEWARE = [
+    'blog.middleware.user_id.UserIDMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

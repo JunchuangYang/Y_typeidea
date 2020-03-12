@@ -132,3 +132,4 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         self.content_html = mistune.markdown(self.content)
         super().save(*args,**kwargs)
+
