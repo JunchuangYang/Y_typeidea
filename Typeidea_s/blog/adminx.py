@@ -199,7 +199,7 @@ class PostAdmin(BaseOwnerAdmin):
         # return media
 
 '''在admin上查看操作日志'''
-@admin  .register(LogEntry)
-class LogEntryAdmin(admin.ModelAdmin):
-    list_display = ['object_repr', 'object_id', 'action_flag', 'user', 'change_message']
+# @admin.register(LogEntry)
+# class LogEntryAdmin(admin.ModelAdmin):
+#     list_display = ['object_repr', 'object_id', 'action_flag', 'user', 'change_message']
 

@@ -1,4 +1,7 @@
 # coding=utf-8
+
+# -i https://pypi.tuna.tsinghua.edu.cn/simple
+
 """
 Django settings for Typeidea_s project.
 
@@ -39,6 +42,11 @@ INSTALLED_APPS = [
     'comment.templatetags',
     'xadmin',
     'crispy_forms',
+    'dal',
+    'dal_select2',
+    'ckeditor',
+    'ckeditor_uploader',
+
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,6 +55,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+CKEDITOR_CONFIGS={
+    'default':{
+        'toolbar':'full',
+        'height':300,
+        'width':800,
+        'tabSpace':4,
+        'extraPluings':'codesnippet',#配置代码插件
+    }
+}
+
+
 '''
 Django的Middleware在项目启动时会被初始化，等待接受请求之后，会根据settings中的MIDDLEWARE
 的配置顺序挨个调用，传递request作为参数
@@ -138,3 +158,26 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'themes', THEME, "static") ,
 ]
+
+XADMIN_TITLE = "Typedia 管理后台"
+XADMIN_FOOTER_TITLE = "power by the5fire.com"
+
+
+'''配置图片上传路径，也就是服务端收到的文件应该存放在什么位置,P234'''
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+CKEDITOR_UPLOAD_PATH = 'article_images'
+
+'''修改默认存储引擎'''
+DEFAULT_FILE_STORAGE = 'Typeidea_s.storage.WatermarkStorage'
+
+
+
+
+
+
+
+
+
+
+

@@ -14,11 +14,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+
 from blog.views import IndexView,CategoryView,TagView,PostDetailView,SearchView,AuthorView
 from config.views import LinkListView
 from comment.views import CommentView
+
+from .autocomplete import CategoryAutocomplete,TagAutocomplete
 
 import xadmin
 
@@ -58,9 +63,15 @@ urlpatterns = [
     url(r'^author/(?P<owner_id>\d+)/$', AuthorView.as_view(), name = 'author'),
     url(r'^comment/$',CommentView.as_view(), name='comment'),
     url(r'^super_admin/', admin.site.urls, name= 'super-admin'),
-    url(r'^admin/', xadmin.site.urls, name= 'xadmin')
-]
-
+    url(r'^admin/', xadmin.site.urls, name= 'xadmin'),
+    url(r'^category-autocomplete/$', CategoryAutocomplete.as_view(),name ='category-autocomplete' ),
+    url(r'^tag-autocomplete/$', TagAutocomplete.as_view(), name = 'tag-autocomplete'),
+    url(r'^ckeditor/',include('ckeditor_uploader.urls'))
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+'''
+ckeditor_uploader.urls:提供了接受上传图片和浏览已上传图片接口
+后面增加的static用来配置图片资源访问，可以理解为Django内置的静态文件处理功能提供静态文件服务
+'''
 
 
 
