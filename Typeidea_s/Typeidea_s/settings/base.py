@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'dal_select2',
     'ckeditor',
     'ckeditor_uploader',
+    'rest_framework',
 
 
     'django.contrib.admin',
@@ -172,7 +173,11 @@ CKEDITOR_UPLOAD_PATH = 'article_images'
 DEFAULT_FILE_STORAGE = 'Typeidea_s.storage.WatermarkStorage'
 
 
-
+'''使用Django-rest-framework进行分页'''
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 2,
+}
 
 
 
