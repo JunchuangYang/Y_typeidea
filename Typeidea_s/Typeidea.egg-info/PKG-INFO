@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: Typeidea
+Version: -version-
+Summary: Blog System base on Django
+Home-page: https://www.xxx.com
+Author: the5fire
+Author-email: @xxx@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Blog :: Django Blog
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
